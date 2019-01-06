@@ -12,6 +12,10 @@ const paths = {
   images: {
     src: ['./static/img/**/*'],
     dest: './assets/img'
+  },
+  fonts : {
+    src: ['./node_modules/@fortawesome/fontawesome-free/css/all.css'],
+    dest: './assets/fonts'
   }
 }
 
@@ -31,6 +35,9 @@ const styles = () =>
       .pipe(concat('index.css'))
       .pipe(gulp.dest(paths.stylsheets.dest))
 
+const fonts = () =>
+    gulp.src(paths.fonts.src)
+    .pipe(gulp.dest(paths.fonts.dest))
 
  // Tache pour minifie les images
 
@@ -47,6 +54,7 @@ const build = gulp.series(clean, gulp.parallel(styles, images));
       
 exports.clean = clean; // 2nd
 exports.styles = styles;
+exports.fonts = fonts;
 exports.images = images;
 exports.build = build;
 exports.watch = watch;
